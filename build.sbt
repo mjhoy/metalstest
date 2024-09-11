@@ -1,7 +1,9 @@
-
 // The simplest possible sbt build file is just one line:
 
-scalaVersion := "2.13.12"
+ThisBuild / scalaVersion := "2.13.14"
+ThisBuild / semanticdbEnabled := true
+ThisBuild / semanticdbVersion := "4.9.3"
+
 // That is, to create a valid sbt build, all you've got to do is define the
 // version of Scala you'd like your project to use.
 
@@ -21,11 +23,12 @@ version := "1.0"
 // mostly only necessary if you intend to publish your library's binaries on a
 // place like Sonatype.
 
-
 // Want to use a published library in your project?
 // You can define other libraries as dependencies in your build like this:
 
-libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0"
+libraryDependencies ++= Seq(
+  "org.typelevel" %% "cats-core" % "2.10.0"
+)
 
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
 // we're adding the scala-parser-combinators dependency to the set of dependencies
